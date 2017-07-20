@@ -6,6 +6,9 @@ import 'rxjs/add/operator/map';
 export class SpotifyService {
 
   private url:string;
+  private artist_url:string;
+  private token = 'BQBUBwQ1rwjEsjjOPnmVkHAQuS_QC5RWOTFbFayv8CIrHcQ8zzpPd8CxHj5oxixuDv1xIdlmh5332Ix3-qKctxnIGfyJQ8EzbkkGYjlkfBu6as2isWPTym-pOO1nURVGVlvoxK-VMHuGZ88DoWFlugXWTpgXfMRrpPN15qw-FGkueFARg68';
+  private album_url:string;
 
   constructor(private _http:Http) {
   }
@@ -14,7 +17,23 @@ export class SpotifyService {
     this.url = 'https://api.spotify.com/v1/search?query=' + str + '&offset=0&limit=20&type=' + type;
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', `Bearer BQDNMJmJFVxp8HYprk68BU7jOjfooQXY--rZXm61-LCQC5JG-4q1PDs3S_0JmrzWQM9DvC5UgtLtqIs7-TEp7lnevkeQeTPLAHlTlsCPHFVR_ktFxDNrI2y5DlkpwjXzHx9KNpSm6RgQCjpkNbWPvag9ZcR3DOQ9uwxCrv3IXznXi78LyA8`);
+    headers.append('Authorization', `Bearer ` + this.token);
     return this._http.get(this.url, new RequestOptions({headers: headers})).map(res => res.json());
+  }
+
+  getArtist(id:string) {
+    this.artist_url = 'https://api.spotify.com/v1/artists/' + id;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer ` + this.token);
+    return this._http.get(this.artist_url, new RequestOptions({headers: headers})).map(res => res.json());
+  }
+
+  getAlbum(id:string) {
+    this.album_url = 'https://api.spotify.com/v1/artists/' + id + "/albums";
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer ` + this.token);
+    return this._http.get(this.album_url, new RequestOptions({headers: headers})).map(res => res.json());
   }
 }

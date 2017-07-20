@@ -7,13 +7,15 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {SearchComponent} from './search/search.component';
 import {AboutComponent} from './about/about.component';
 import {routing} from "./app.routing";
+import { ArtistComponent } from './artist/artist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SearchComponent,
-    AboutComponent
+    AboutComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,
