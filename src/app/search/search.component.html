@@ -1,0 +1,27 @@
+<h1>Need Music ?</h1>
+<p class="lead">With Spotify, it's easy to find the right music for every moment – on your phone, your computer, your
+  tablet and more.</p>
+<form action="">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search Artists" [(ngModel)]="search" name="search"
+           (keyup)="searchArtist()">
+  </div>
+</form>
+
+<div *ngIf="result">
+  <div *ngFor="let artist of result">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-res well">
+          <h4>
+            {{artist.name}}
+          </h4>
+          <div>
+            <strong>Genres:</strong>
+            <div *ngFor="let genre of artist.genres"> {{genre}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
