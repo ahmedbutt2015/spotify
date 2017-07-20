@@ -29,11 +29,19 @@ export class SpotifyService {
     return this._http.get(this.artist_url, new RequestOptions({headers: headers})).map(res => res.json());
   }
 
-  getAlbum(id:string) {
+  getAlbums(id:string) {
     this.album_url = 'https://api.spotify.com/v1/artists/' + id + "/albums";
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', `Bearer ` + this.token);
     return this._http.get(this.album_url, new RequestOptions({headers: headers})).map(res => res.json());
+  }
+
+  getAlbum(id:string) {
+    let temp_url = 'https://api.spotify.com/v1/albums/' + id;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer ` + this.token);
+    return this._http.get(temp_url, new RequestOptions({headers: headers})).map(res => res.json());
   }
 }

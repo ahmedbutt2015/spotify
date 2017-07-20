@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Artist} from "../../models/Artist";
 import {Album} from "../../models/Album";
 import {SpotifyService} from "../spotify.service";
@@ -24,7 +24,7 @@ export class ArtistComponent implements OnInit {
         .subscribe(artist => {
           this.artist = artist
         })
-      this._spotifyService.getAlbum(id)
+      this._spotifyService.getAlbums(id)
         .subscribe(albums => {
           this.albums = albums.items
         })
